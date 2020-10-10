@@ -1263,7 +1263,6 @@
       "version": "4.0.2",
       "resolved": "https://registry.npmjs.org/@types/bson/-/bson-4.0.2.tgz",
       "integrity": "sha512-+uWmsejEHfmSjyyM/LkrP0orfE2m5Mx9Xel4tXNeqi1ldK5XMQcDsFkBmLDtuyKUbxj2jGDo0H240fbCRJZo7Q==",
-      "dev": true,
       "requires": {
         "@types/node": "*"
       }
@@ -1280,7 +1279,6 @@
       "version": "2.8.8",
       "resolved": "https://registry.npmjs.org/@types/cors/-/cors-2.8.8.tgz",
       "integrity": "sha512-fO3gf3DxU2Trcbr75O7obVndW/X5k8rJNZkLXlQWStTHhP71PkRqjwPIEI0yMnJdg9R9OasjU+Bsr+Hr1xy/0w==",
-      "dev": true,
       "requires": {
         "@types/express": "*"
       }
@@ -1371,7 +1369,6 @@
       "version": "3.5.27",
       "resolved": "https://registry.npmjs.org/@types/mongodb/-/mongodb-3.5.27.tgz",
       "integrity": "sha512-1jxKDgdfJEOO9zp+lv43p8jOqRs02xPrdUTzAZIVK9tVEySfCEmktL2jEu9A3wOBEOs18yKzpVIKUh8b8ALk3w==",
-      "dev": true,
       "requires": {
         "@types/bson": "*",
         "@types/node": "*"
@@ -1381,7 +1378,6 @@
       "version": "1.9.1",
       "resolved": "https://registry.npmjs.org/@types/morgan/-/morgan-1.9.1.tgz",
       "integrity": "sha512-2j5IKrgJpEP6xw/uiVb2Xfga0W0sSVD9JP9t7EZLvpBENdB0OKgcnoKS8IsjNeNnZ/86robdZ61Orl0QCFGOXg==",
-      "dev": true,
       "requires": {
         "@types/node": "*"
       }

@@ -24,15 +24,15 @@
     "tslint-config-airbnb": "^5.11.2",
     "typescript": "^4.0.3",
     "util": "^0.12.3",
-    "uuid": "^8.3.1"
-  },
-  "devDependencies": {
+    "uuid": "^8.3.1",
     "@types/cors": "^2.8.8",
     "@types/mongodb": "^3.5.27",
     "@types/morgan": "^1.9.1"
   },
+  "devDependencies": {},
   "scripts": {
-    "start": "npm run build && node lib",
+    "start": "node lib",
+    "dev": "npm run build && node lib",
     "test:coverage": "jest --config jestconfig.json --collect-coverage",
     "test": "jest --config jestconfig.json",
     "build": "tsc",
