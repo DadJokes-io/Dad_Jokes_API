@@ -27,6 +27,7 @@
     "uuid": "^8.3.1"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.8",
     "@types/mongodb": "^3.5.27",
     "@types/morgan": "^1.9.1"
   },
