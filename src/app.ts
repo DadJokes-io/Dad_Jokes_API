@@ -31,6 +31,7 @@ class App {
   private routes(): void {
     this.app.use('/api/random', RandomRouter);
     this.app.use('/api/joke', JokeRouter);
+    this.app.use('/api/jokes', JokeRouter);
   }
 }
 
