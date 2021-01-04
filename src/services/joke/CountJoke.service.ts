@@ -1,9 +1,8 @@
-import { MongoService } from '../..';
+import { mongoService } from '../..';
 
-export const CountJokeService = async () => {
-  console.log('COunt joke service');
+export const countJokeService = async () => {
   try {
-    const result = await MongoService.db('Jokes').collection('DadJokes').countDocuments();
+    const result = await mongoService.db('Jokes').collection('DadJokes').countDocuments();
     return { success: true, body: result };
   } catch (err) {
     return { success: false, error: err };

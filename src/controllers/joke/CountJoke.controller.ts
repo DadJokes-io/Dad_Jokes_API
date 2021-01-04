@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { CountJokeService } from '../../services/joke/CountJoke.service';
+import { countJokeService } from '../../services/joke/CountJoke.service';
 
-export const CountJokeController = async (req: Request, res: Response) => {
+export const countJokeController = async (req: Request, res: Response) => {
   try {
-    const jokeCount = await CountJokeService();
+    const jokeCount = await countJokeService();
     res.send(jokeCount);
   } catch (err) {
     console.log(err);

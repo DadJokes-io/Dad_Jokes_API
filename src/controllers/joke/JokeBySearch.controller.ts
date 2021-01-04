@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { JokeBySearchService } from '../../services/joke/JokeBySearch.service';
+import { jokeBySearchService } from '../../services/joke/JokeBySearch.service';
 
-export const JokeBySearchController = async (req: Request, res: Response) => {
+export const jokeBySearchController = async (req: Request, res: Response) => {
   try {
-    const findJokes = await JokeBySearchService(req.query.term?.toString());
+    const findJokes = await jokeBySearchService(req.query.term?.toString());
     res.send(findJokes);
   } catch (err) {
     res.status(500).send(err);

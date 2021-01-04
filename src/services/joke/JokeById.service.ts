@@ -1,10 +1,10 @@
 import { ObjectId } from 'mongodb';
-import { MongoService } from '../..';
+import { mongoService } from '../..';
 
-export const JokeByIdService = async (_id: string) => {
+export const jokeByIdService = async (id: string) => {
   try {
-    const o_id = new ObjectId(_id);
-    const result = await MongoService.db('Jokes').collection('DadJokes').findOne({ _id: o_id });
+    const oId = new ObjectId(id);
+    const result = await mongoService.db('Jokes').collection('DadJokes').findOne({ _id: oId });
     return { success: true, body: result };
   } catch (err) {
     return { success: false, error: err };

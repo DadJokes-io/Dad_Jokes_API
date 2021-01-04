@@ -1,8 +1,9 @@
-import { MongoService } from '../..';
+import { mongoService } from '../..';
 
-export const RandomJokeService = async (count: number) => {
+export const randomJokeService = async (count: number) => {
   try {
-    const result = await MongoService.db('Jokes')
+    const result = await mongoService
+      .db('Jokes')
       .collection('DadJokes')
       .aggregate([{ $sample: { size: count > 5 ? 5 : count } }])
       .toArray();

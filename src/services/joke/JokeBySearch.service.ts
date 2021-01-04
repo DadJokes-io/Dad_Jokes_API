@@ -1,14 +1,14 @@
-import { MongoService } from '../..';
+import { mongoService } from '../..';
 
-export const JokeBySearchService = async (search: string | undefined) => {
+export const jokeBySearchService = async (search: string | undefined) => {
   try {
-    const result = await MongoService.db('Jokes')
+    const result = await mongoService
+      .db('Jokes')
       .collection('DadJokes')
       .find({ $text: { $search: search ? search : '' } })
       .toArray();
     return { success: true, body: result };
   } catch (err) {
-    console.log(err);
     return { success: false, error: err };
   }
 };

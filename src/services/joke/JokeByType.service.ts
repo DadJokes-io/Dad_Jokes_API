@@ -1,8 +1,9 @@
-import { MongoService } from '../..';
+import { mongoService } from '../..';
 
-export const JokeByTypeService = async (type: string, limit: number) => {
+export const jokeByTypeService = async (type: string, limit: number) => {
   try {
-    const result = await MongoService.db('Jokes')
+    const result = await mongoService
+      .db('Jokes')
       .collection('DadJokes')
       .find({ type })
       .limit(limit > 50 ? 50 : limit)

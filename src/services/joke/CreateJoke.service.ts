@@ -1,4 +1,4 @@
-import { MongoService } from '../..';
+import { mongoService } from '../..';
 
 interface Body {
   type: string;
@@ -6,9 +6,9 @@ interface Body {
   punchline: string;
 }
 
-export const CreateJokeService = async (body: Body) => {
+export const createJokeService = async (body: Body) => {
   try {
-    const result = await MongoService.db('Jokes').collection('DadJokes').insertOne(body);
+    const result = await mongoService.db('Jokes').collection('DadJokes').insertOne(body);
     return { success: true, body: result };
   } catch (err) {
     return { success: false, error: err };

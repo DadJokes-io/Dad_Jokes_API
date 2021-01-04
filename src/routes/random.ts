@@ -1,14 +1,14 @@
 import { Router } from 'express';
-import { JokeByTypeController } from '../controllers/joke/JokeByType.controller';
-import { RandomJokeController } from '../controllers/random/RandomJoke.controller';
-import wrapAsync from '../middleware/async.middleware';
+import { jokeByTypeController } from '../controllers/joke/JokeByType.controller';
+import { randomJokeController } from '../controllers/random/RandomJoke.controller';
+import asyncMiddleware from '../middleware/async.middleware';
 
 const router: Router = Router();
 
-router.get('/joke', wrapAsync(RandomJokeController));
+router.get('/joke', asyncMiddleware(randomJokeController));
 
-router.get('/jokes', wrapAsync(RandomJokeController));
+router.get('/jokes', asyncMiddleware(randomJokeController));
 
-router.get('/type/:type', wrapAsync(JokeByTypeController));
+router.get('/type/:type', asyncMiddleware(jokeByTypeController));
 
-export const RandomRouter: Router = router;
+export const randomRouter: Router = router;
