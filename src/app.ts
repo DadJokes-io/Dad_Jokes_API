@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import { randomRouter } from './routes/random';
 import { jokeRouter } from './routes/joke';
+import { userRouter } from './routes/user';
 
 class App {
   constructor() {
@@ -32,6 +33,7 @@ class App {
     this.app.use('/api/random', randomRouter);
     this.app.use('/api/joke', jokeRouter);
     this.app.use('/api/jokes', jokeRouter);
+    this.app.use('/api/user', userRouter);
   }
 }
 
