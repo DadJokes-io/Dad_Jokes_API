@@ -6,9 +6,17 @@ const password = process.env.DB_PASS;
 const host = process.env.DB_HOST;
 
 const MongoClient = mongodb.MongoClient;
-const uri = `mongodb+srv://${user}:${password}@${host}`;
+const uri = `mongodb://mongodb_container:27017`;
 export const mongoService = new MongoClient(uri, { useNewUrlParser: true });
-mongoService.connect();
+
+const retryConnection = () => {
+  mongoService.connect().catch((e) => {
+    console.error(e);
+    retryConnection();
+  });
+};
+
+retryConnection();
 
 import app from './app';
 

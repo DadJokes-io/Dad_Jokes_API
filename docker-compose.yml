@@ -1,0 +1,23 @@
+version: '3.7'
+services:
+  mongodb_container:
+    container_name: mongodb_container
+    image: mongo:latest
+    environment:
+      - MONGO_INITDB_DATABASE=${DATABASE}
+      - MONGODB_USER=${USERNAME}
+      - MONGODB_PASS=${PASS}
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb_data_container:/data/db
+  dadjokes_container:
+    container_name: dadJokes_container
+    links:
+      - mongodb_container
+    build: ./
+    ports:
+      - ${PORT}:${PORT}
+
+volumes:
+  mongodb_data_container:
