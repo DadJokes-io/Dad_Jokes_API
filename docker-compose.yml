@@ -2,6 +2,7 @@ version: '3.7'
 services:
   mongodb_container:
     container_name: mongodb_container
+    restart: always
     image: mongo:latest
     environment:
       - MONGO_INITDB_DATABASE=${DATABASE}
@@ -13,6 +14,7 @@ services:
       - mongodb_data_container:/data/db
   dadjokes_container:
     container_name: dadJokes_container
+    restart: always
     links:
       - mongodb_container
     build: ./
