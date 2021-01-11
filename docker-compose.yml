@@ -5,6 +5,8 @@ services:
     restart: always
     image: mongo:latest
     environment:
+      - VIRTUAL_HOST=db.ghostdemo.xyz
+      - LETSENCRYPT_HOST=db.ghostdemo.xyz
       - MONGO_INITDB_DATABASE=${DATABASE}
       - MONGODB_USER=${USERNAME}
       - MONGODB_PASS=${PASS}
@@ -15,11 +17,38 @@ services:
   dadjokes_container:
     container_name: dadJokes_container
     restart: always
+    environment:
+      VIRTUAL_HOST: ghostdemo.xyz
+      LETSENCRYPT_HOST: ghostdemo.xyz
     links:
       - mongodb_container
     build: ./
+    expose:
+      - ${PORT}
+  nginx-proxy:
+    container_name: nginx_container
+    restart: always
+    image: jwilder/nginx-proxy
     ports:
-      - ${PORT}:${PORT}
+      - '80:80'
+      - '443:443'
+    volumes:
+      - '/etc/nginx/vhost.d'
+      - '/usr/share/nginx/html'
+      - '/var/run/docker.sock:/tmp/docker.sock:ro'
+      - '/etc/nginx/certs'
+    depends_on:
+      - dadjokes_container
+      - mongodb_container
+
+  letsencrypt-nginx-proxy-companion:
+    container_name: letsencrypt
+    restart: always
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock:ro'
+    volumes_from:
+      - 'nginx-proxy'
 
 volumes:
   mongodb_data_container:
