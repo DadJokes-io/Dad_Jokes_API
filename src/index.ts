@@ -6,7 +6,7 @@ const password = process.env.DB_PASS;
 const host = process.env.DB_HOST;
 
 const MongoClient = mongodb.MongoClient;
-const uri = `mmongodb+srv://Admin:football15@cluster1.vbz5l.mongodb.net`;
+const uri = `mongodb://mongodb_container:27017`;
 export const mongoService = new MongoClient(uri, { useNewUrlParser: true });
 
 const retryConnection = () => {
