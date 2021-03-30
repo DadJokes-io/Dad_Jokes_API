@@ -1,5 +1,5 @@
 import { mongoService } from '../..';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { accountExistService } from './accountExist.service';
 require('dotenv').config();
@@ -18,7 +18,12 @@ export const createUserService = async (body: Body) => {
     const hash = await bcrypt.hash(body.password, 10);
     const secret = process.env.PRIVATE_KEY as string;
     const token = jwt.sign(
-      { name: `${body.firstName} ${body.lastName}`, email: body.email, company: body.company, photoUrl: body.photoUrl },
+      {
+        name: `${body.firstName} ${body.lastName}`,
+        email: body.email,
+        company: body.company,
+        photoUrl: body.photoUrl,
+      },
       secret,
     );
     const hasAccount = await accountExistService(body.email);

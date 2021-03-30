@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import { accountExistService } from './accountExist.service';
 
 interface Body {
