@@ -8,7 +8,15 @@ const host = process.env.DB_HOST;
 const MongoClient = mongodb.MongoClient;
 const uri = `mongodb+srv://${user}:${password}@${host}`;
 export const mongoService = new MongoClient(uri, { useNewUrlParser: true });
-mongoService.connect();
+
+const retryConnection = () => {
+  mongoService.connect().catch((e) => {
+    console.error(e);
+    retryConnection();
+  });
+};
+
+retryConnection();
 
 import app from './app';
 
