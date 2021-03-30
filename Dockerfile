@@ -1,3 +1,4 @@
+#!/bin/bash
 FROM node:alpine
 
 # Set working directory
@@ -18,7 +19,7 @@ COPY ./ ./
 RUN yarn build
 
 # Expose the listening port
-EXPOSE 3000
+EXPOSE 8080
 
 # Run container as non-root (unprivileged) user
 # The "node" user is provided in the Node.js Alpine base image
