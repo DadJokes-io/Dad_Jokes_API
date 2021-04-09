@@ -14,5 +14,5 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
-          repository: dadjokes-io/dadjokes.io/dadjokes-web-image
+          repository: dadjokes-io/dad_jokes_api/dadjokes-api-image
           tag_with_ref: true
