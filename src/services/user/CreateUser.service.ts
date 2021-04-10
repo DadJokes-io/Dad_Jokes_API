@@ -2,15 +2,15 @@ import { mongoService } from '../..';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { accountExistService } from './accountExist.service';
-require('dotenv').config();
+import 'dotenv';
 
 interface Body {
-  firstName: string;
-  lastName: string;
+  firstName?: string;
+  lastName?: string;
   email: string;
   password: string;
-  company: string | null;
   photoUrl: string | null;
+  displayName: string;
 }
 
 export const createUserService = async (body: Body) => {
@@ -21,8 +21,8 @@ export const createUserService = async (body: Body) => {
       {
         name: `${body.firstName} ${body.lastName}`,
         email: body.email,
-        company: body.company,
         photoUrl: body.photoUrl,
+        displayName: body.displayName,
       },
       secret,
     );
@@ -34,10 +34,12 @@ export const createUserService = async (body: Body) => {
       firstName: body.firstName,
       lastName: body.lastName,
       email: body.email,
-      company: body.company,
       password: hash,
       sessionToken: token,
-      photoUrl: body.company,
+      photoUrl: body.photoUrl,
+      displayName: body.displayName,
+      likes: [],
+      posts: [],
     });
     return { success: true, body: result.ops[0] };
   } catch (err) {
