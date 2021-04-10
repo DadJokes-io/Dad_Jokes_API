@@ -23,6 +23,6 @@ export const loginUserService = async (body: Body) => {
       throw new Error(`Incorrect password entered`);
     }
   } catch (err) {
-    return { success: false, error: err.message };
+    return { success: false, error: err.message || err };
   }
 };
