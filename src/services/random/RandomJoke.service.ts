@@ -5,7 +5,7 @@ export const randomJokeService = async (count: number) => {
     const result = await mongoService
       .db('Jokes')
       .collection('DadJokes')
-      .aggregate([{ $sample: { size: count > 5 ? 5 : count } }])
+      .aggregate([{ $match: { approved: true } }, { $sample: { size: count > 5 ? 5 : count } }])
       .toArray();
     return { success: true, body: result };
   } catch (err) {
