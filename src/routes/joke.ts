@@ -19,6 +19,6 @@ router.get('/type/:type', asyncMiddleware(jokeByTypeController));
 
 router.post('/create', asyncMiddleware(createJokeController));
 
-router.delete('/delete', asyncMiddleware(deleteJokeController));
+router.delete('/delete/:id', asyncMiddleware(deleteJokeController));
 
 export const jokeRouter: Router = router;
