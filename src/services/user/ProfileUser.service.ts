@@ -18,8 +18,7 @@ export const profileUserService = async (sessionToken: string | undefined) => {
     const result = await mongoService
       .db('Users')
       .collection('Profile')
-      .find({ $text: { $search: `"${sessionToken}"` } })
-      .toArray();
+      .findOne({ $text: { $search: `"${sessionToken}"` } });
 
     return { success: true, body: result };
   } catch (err) {
