@@ -18,6 +18,7 @@ export const createJokeService = async (sessionToken: string | undefined, body: 
           name: user.displayName,
           id: oID(user._id),
         },
+        likes: [],
         date: Math.floor(new Date().getTime() / 1000),
         approved: false,
       });
