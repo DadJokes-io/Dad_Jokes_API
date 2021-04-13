@@ -7,12 +7,15 @@ const host = process.env.DB_HOST;
 
 const MongoClient = mongodb.MongoClient;
 const uri = `mongodb+srv://${user}:${password}@${host}`;
-export const mongoService = new MongoClient(uri, { useNewUrlParser: true });
+//const uri = `mongodb://localhost:27017`;
+export const mongoService = new MongoClient(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 const retryConnection = () => {
   mongoService.connect().catch((e) => {
     console.error(e);
-    retryConnection();
   });
 };
 
