@@ -12,6 +12,7 @@ type User = {
   posts: string[];
   admin: boolean;
   _id: string;
+  bio: string;
 };
 
 type UserLikeInformation = {
