@@ -7,6 +7,7 @@ import {
   ListLikeJokeController,
 } from '../controllers/user/LikeJoke.controller';
 import asyncMiddleware from '../middleware/async.middleware';
+import { publicUserController } from '../controllers/user/PublicUser.controller';
 
 const router: Router = Router();
 
@@ -17,6 +18,8 @@ router.post('/login', asyncMiddleware(loginUserController));
 router.get('/profile', asyncMiddleware(profileUserController));
 
 router.get('/like', asyncMiddleware(ListLikeJokeController));
+
+router.get('/public/profile/:id', asyncMiddleware(publicUserController));
 
 router.post('/like/:jokeId', asyncMiddleware(CreateLikeJokeController));
 
