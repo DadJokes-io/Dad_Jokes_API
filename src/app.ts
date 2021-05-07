@@ -9,6 +9,7 @@ import { userRouter } from './routes/user';
 import { ApolloServer } from 'apollo-server-express';
 import { typeDefs } from './typeDefs';
 import { resolvers } from './resolvers';
+import { typeRouter } from './routes/type';
 
 class App {
   server = new ApolloServer({ typeDefs, resolvers });
@@ -24,7 +25,9 @@ class App {
     this.app.use(bodyParser.urlencoded({ extended: false }));
     this.app.use(bodyParser.json());
     this.app.use(cors());
-    this.app.use(helmet({ contentSecurityPolicy: process.env.NODE_ENV === 'production' ? undefined : false }));
+    this.app.use(
+      helmet({ contentSecurityPolicy: process.env.NODE_ENV === 'production' ? undefined : false }),
+    );
     this.app.use(morgan('combined'));
     const app = this.app;
     this.server.applyMiddleware({ app });
@@ -40,6 +43,7 @@ class App {
     this.app.use('/api/joke', jokeRouter);
     this.app.use('/api/jokes', jokeRouter);
     this.app.use('/api/user', userRouter);
+    this.app.use('/api/type', typeRouter);
   }
 }
 
