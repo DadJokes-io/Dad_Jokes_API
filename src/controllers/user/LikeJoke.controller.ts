@@ -8,6 +8,11 @@ export const CreateLikeJokeController = async (req: Request, res: Response) => {
     const jokeId = req.params.jokeId as string;
 
     const likeJokeResult = await LikeJokeService(sessionToken(req), jokeId);
+
+    if (likeJokeResult?.success === false) {
+      return res.status(500).send(likeJokeResult);
+    }
+
     res.send(likeJokeResult);
   } catch (err) {
     res.status(500).send(err);
