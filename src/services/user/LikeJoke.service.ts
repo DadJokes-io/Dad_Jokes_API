@@ -10,18 +10,8 @@ export const LikeJokeService = async (sessionToken: string | undefined, jokeId: 
 
     if (user instanceof Error) throw user;
 
-    if (user.likes.includes(jokeId)) {
-      const indexUserLiked = user.likes.findIndex((id) => id == jokeId);
-      const indexPostLiked = joke.body?.likes.findIndex((j) => j.id == user._id);
-
-      user.likes.splice(indexUserLiked, 1);
-
-      if (typeof indexPostLiked === 'undefined') return;
-      joke.body?.likes.splice(indexPostLiked, 1);
-    } else {
-      user.likes.push(jokeId);
-      joke.body?.likes.push({ id: user._id, displayName: user.displayName });
-    }
+    user.likes.push(oID(jokeId) as any);
+    joke.body?.likes.push({ id: user._id, displayName: user.displayName });
 
     await mongoService
       .db('Users')
