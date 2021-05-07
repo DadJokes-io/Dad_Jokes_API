@@ -1,6 +1,7 @@
 import { mongoService } from '../..';
 import { User } from '../../models/user';
 import oID from '../../util/oID';
+import { countTypeService } from '../type/CountType.service';
 import { authUser } from '../user/authUser.service';
 import { jokeByIdService } from './JokeById.service';
 
@@ -11,6 +12,12 @@ export const deleteJokeService = async (sessionToken: string | undefined, id: st
     if (user instanceof Error) throw user;
 
     const joke = await jokeByIdService(id);
+
+    if (!joke.body) throw new Error('Joke does not exist');
+
+    const typeExist = await countTypeService(joke.body?.type);
+
+    if (!typeExist.body) throw new Error('Type does not exist');
 
     const postIndex = user.posts.findIndex((p) => p == id);
     user.posts.splice(postIndex, 1);
@@ -51,6 +58,16 @@ export const deleteJokeService = async (sessionToken: string | undefined, id: st
             { $set: { posts: user.posts } },
           );
       }
+
+      await mongoService
+        .db('Jokes')
+        .collection('Types')
+        .updateOne(
+          {
+            _id: typeExist.body?._id,
+          },
+          { $set: { postCount: typeExist.body?.postCount - 1 } },
+        );
     } else {
       throw new Error('unauthorized to delete this joke');
     }
@@ -60,7 +77,3 @@ export const deleteJokeService = async (sessionToken: string | undefined, id: st
     return { success: false, error: err.message };
   }
 };
-
-// 60725a24fcd7ead8ba384a87
-
-// 60725a24fcd7ead8ba384a87
