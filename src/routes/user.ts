@@ -12,6 +12,7 @@ import { getUserPostController } from '../controllers/user/GetUserPosts.controll
 import { getUserLikesController } from '../controllers/user/GetUserLikes.controller';
 import { updateUserController } from '../controllers/user/UpdateUser.controller';
 import { UnlikeJokeController } from '../controllers/user/UnlikeJoke.controller';
+import { createUserProfileImageController } from '../controllers/user/CreateUserProfileImage.controller';
 
 const router: Router = Router();
 
@@ -32,6 +33,8 @@ router.post('/like/:jokeId', asyncMiddleware(CreateLikeJokeController));
 router.get('/likes/:userId', asyncMiddleware(getUserLikesController));
 
 router.get('/posts/:userId', asyncMiddleware(getUserPostController));
+
+router.post('/image/:fileName', asyncMiddleware(createUserProfileImageController));
 
 router.put('/', asyncMiddleware(updateUserController));
 
