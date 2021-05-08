@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import 'dotenv';
 import { User } from '../../models/user';
 
-export const authUser = async (sessionToken: string | undefined): Promise<User | Error> => {
+export const authUser = async (sessionToken: string | undefined): Promise<User> => {
   try {
     if (typeof sessionToken === 'undefined') throw new Error('session Token no present');
 
