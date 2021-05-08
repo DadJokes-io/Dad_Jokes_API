@@ -1,4 +1,4 @@
-import 'dotenv';
+require('dotenv').config();
 import mongodb from 'mongodb';
 import ImageKit from 'imagekit';
 
