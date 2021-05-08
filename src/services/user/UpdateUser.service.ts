@@ -26,7 +26,10 @@ export const UpdateUserService = async (
       ...updatePayload,
     };
 
-    console.log(updatedOptions);
+    await mongoService
+      .db('Users')
+      .collection('Profile')
+      .findOneAndUpdate({ _id: user._id }, { $set: { ...updatedOptions } });
 
     return { success: true };
   } catch (err) {
