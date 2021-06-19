@@ -14,9 +14,9 @@ jobs:
       - name: Create .env file
         run: |
           touch .env
-          echo DB_HOST=${{ secrets.DADJOKES_API_DB_HOST }} >> .env
-        run: echo DB_PASS=${{ secrets.DADJOKES_API_DB_PASS }} >> .env
-        run: echo DB_USER=${{ secrets.DADJOKES_API_DB_USER }} >> .env   
+          echo DB_HOST=${{ secrets.DADJOKES_API_DB_HOST }} 
+          DB_PASS=${{ secrets.DADJOKES_API_DB_PASS }} 
+          DB_USER=${{ secrets.DADJOKES_API_DB_USER }} >> .env
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       - name: Set up Docker Buildx
