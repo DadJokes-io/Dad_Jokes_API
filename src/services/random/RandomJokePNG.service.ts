@@ -10,7 +10,7 @@ export const randomJokePNGService = async () => {
       .aggregate([{ $sample: { size: 1 } }])
       .toArray();
 
-    const image = CreateImage(joke[0].setup, joke[0].setup);
+    const image = CreateImage(joke[0].setup, joke[0].punchline);
 
     const result = {
       ...joke[0],
