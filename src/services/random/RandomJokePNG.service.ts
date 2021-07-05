@@ -31,6 +31,9 @@ export const randomJokePNGService = async () => {
       lineSpacing: 10,
       padding: 20,
       output: 'dataURL',
+      font: '18px Montserrat',
+      localFontPath: 'fonts/Montserrat-Regular.ttf',
+      localFontName: 'Montserrat',
     });
 
     return { success: true, body: png };
