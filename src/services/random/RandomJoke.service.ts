@@ -1,11 +1,11 @@
 import { mongoService } from '../..';
 
-export const randomJokeService = async (count: number) => {
+export const randomJokeService = async (count: number, NSFW: boolean) => {
   try {
     const result = await mongoService
       .db('Jokes')
       .collection('DadJokes')
-      .aggregate([{ $sample: { size: count > 5 ? 5 : count } }])
+      .aggregate([{ $match: { NSFW: false } }, { $sample: { size: count > 5 ? 5 : count } }])
       .toArray();
 
     const body = result.map((joke) => {
