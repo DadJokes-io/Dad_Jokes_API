@@ -5,7 +5,7 @@ export const jokeBySearchController = async (req: Request, res: Response) => {
   try {
     const findJokes = await jokeBySearchService(req.query.term?.toString());
     res.send(findJokes);
-  } catch (err) {
-    res.status(500).send(err);
+  } catch (err: any) {
+    res.status(500).send({ success: false, error: err.message });
   }
 };

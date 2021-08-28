@@ -7,8 +7,16 @@ export const randomJokeService = async (count: number) => {
       .collection('DadJokes')
       .aggregate([{ $sample: { size: count > 5 ? 5 : count } }])
       .toArray();
-    return { success: true, body: result };
+
+    const body = result.map((joke) => {
+      return {
+        ...joke,
+        shareableLink: `https://dadjokes.io/joke/${joke._id}`,
+      };
+    });
+
+    return { success: true, body: body };
   } catch (err) {
-    return { success: false, error: err };
+    throw err;
   }
 };

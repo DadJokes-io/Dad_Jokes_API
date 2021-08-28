@@ -8,8 +8,15 @@ export const jokeByTypeService = async (type: string, limit: number) => {
       .find({ type })
       .limit(limit > 50 ? 50 : limit)
       .toArray();
-    return { success: true, body: result };
+
+    const body = result.map((joke) => {
+      return {
+        ...joke,
+        shareableLink: `https://dadjokes.io/joke/${joke._id}`,
+      };
+    });
+    return { success: true, body: body };
   } catch (err) {
-    return { success: false, error: err };
+    throw err;
   }
 };

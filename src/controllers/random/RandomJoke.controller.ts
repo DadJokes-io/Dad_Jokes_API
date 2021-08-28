@@ -7,7 +7,7 @@ export const randomJokeController = async (req: Request, res: Response) => {
   try {
     const randomJoke = await randomJokeService(count);
     res.send(randomJoke);
-  } catch (err) {
-    res.status(500).send(err);
+  } catch (err: any) {
+    res.status(500).send({ success: false, error: err.message });
   }
 };

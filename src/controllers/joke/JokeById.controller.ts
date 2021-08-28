@@ -5,7 +5,7 @@ export const jokeByIdController = async (req: Request, res: Response) => {
   try {
     const findJoke = await jokeByIdService(req.params.id);
     res.send(findJoke);
-  } catch (err) {
-    res.status(500).send(err);
+  } catch (err: any) {
+    res.status(500).send({ success: false, error: err.message });
   }
 };
