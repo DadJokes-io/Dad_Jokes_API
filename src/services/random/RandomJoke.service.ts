@@ -1,11 +1,21 @@
 import { mongoService } from '../..';
 
-export const randomJokeService = async (count: number, NSFW: boolean) => {
+export const randomJokeService = async (count: number, NSFW = false) => {
   try {
     const result = await mongoService
       .db('Jokes')
       .collection('DadJokes')
-      .aggregate([{ $match: { NSFW: false } }, { $sample: { size: count > 5 ? 5 : count } }])
+      .aggregate([
+        {
+          '$match': {
+            'NSFW': Boolean(NSFW)
+          }
+        }, {
+          '$sample': {
+            'size': count > 5 ? 5 : count
+          }
+        }
+      ])
       .toArray();
 
     const body = result.map((joke) => {
