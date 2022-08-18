@@ -3,7 +3,7 @@ import { randomJokeService } from '../../services/random/RandomJoke.service';
 
 export const randomJokeController = async (req: Request, res: Response) => {
   const count: number = Number(req.query.count) | 1;
-  const NSFW: boolean = (req.query.NSFW as unknown) as boolean
+  const NSFW: string = (req.query.NSFW as unknown) as string
 
   try {
     const randomJoke = await randomJokeService(count, NSFW);
