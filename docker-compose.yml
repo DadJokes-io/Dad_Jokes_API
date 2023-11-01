@@ -1,0 +1,34 @@
+version: '3.7'
+services:
+  dadjokes_api_container:
+    container_name: dadjokes_api_container
+    restart: always
+    image: './'
+    environment:
+      VIRTUAL_HOST: api.dadjokes.io
+      LETSENCRYPT_HOST: api.dadjokes.io
+    expose:
+      - '8080'
+  nginx-proxy:
+    container_name: nginx_container
+    restart: always
+    image: jwilder/nginx-proxy
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - '/etc/nginx/vhost.d'
+      - '/usr/share/nginx/html'
+      - '/var/run/docker.sock:/tmp/docker.sock:ro'
+      - '/etc/nginx/certs'
+    depends_on:
+      - dadjokes_api_container
+      - dadjokes_web_container
+  letsencrypt-nginx-proxy-companion:
+    container_name: letsencrypt
+    restart: always
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock:ro'
+    volumes_from:
+      - 'nginx-proxy'

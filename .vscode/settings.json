@@ -1,5 +1,6 @@
 {
   "conventionalCommits.scopes": [
-    "create image"
+    "create image",
+    "docker"
   ]
 }
