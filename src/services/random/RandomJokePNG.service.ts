@@ -1,6 +1,6 @@
 import { mongoService } from '../..';
 import { Joke } from '../../model/joke';
-import CreateImage from '../../utils/createImage';
+import generateImage from '../../utils/createCanvasImage';
 
 export const randomJokePNGService = async () => {
   try {
@@ -10,7 +10,7 @@ export const randomJokePNGService = async () => {
       .aggregate([{ $sample: { size: 1 } }])
       .toArray();
 
-    const image = CreateImage(joke[0].setup, joke[0].punchline);
+    const image = await generateImage(joke[0].setup, joke[0].punchline);
 
     const result = {
       ...joke[0],

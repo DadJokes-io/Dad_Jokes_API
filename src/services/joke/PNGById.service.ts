@@ -1,7 +1,7 @@
 import { ObjectId } from 'mongodb';
 import { mongoService } from '../..';
 import { Joke } from '../../model/joke';
-import CreateImage from '../../utils/createImage';
+import generateImage from '../../utils/createCanvasImage';
 
 export const PNGByIdService = async (id: string) => {
   try {
@@ -12,7 +12,7 @@ export const PNGByIdService = async (id: string) => {
       .findOne({ _id: oId });
 
     if (result) {
-      const image = CreateImage(result.setup, result.punchline);
+      const image = await generateImage(result.setup, result.punchline)
 
       return {
         success: true,
