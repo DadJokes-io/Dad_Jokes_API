@@ -3,7 +3,7 @@ services:
   dadjokes_api_container:
     container_name: dadjokes_api_container
     restart: always
-    image: './'
+    build: './'
     environment:
       VIRTUAL_HOST: api.dadjokes.io
       LETSENCRYPT_HOST: api.dadjokes.io
@@ -23,7 +23,6 @@ services:
       - '/etc/nginx/certs'
     depends_on:
       - dadjokes_api_container
-      - dadjokes_web_container
   letsencrypt-nginx-proxy-companion:
     container_name: letsencrypt
     restart: always
