@@ -1,17 +1,18 @@
-import { createCanvas } from 'canvas';
+import { createCanvas, registerFont } from 'canvas';
 
 async function generateImage(setup: string, punchline: string): Promise<string> {
   // Set up canvas dimensions
   const canvasWidth = 800;
   const canvasHeight = 400;
 
+  registerFont('src/fonts/Montserrat-Regular.ttf', { family: 'Montserrat' })
   // Create a canvas
   const canvas = createCanvas(canvasWidth, canvasHeight);
   const ctx = canvas.getContext('2d');
 
   // Set up font style
   const fontSize = 40;
-  ctx.font = `${fontSize}px Arial`;
+  ctx.font = `${fontSize}px Montserrat`;
   ctx.fillStyle = '#000000';
 
   // Wrap text function to handle line breaks
