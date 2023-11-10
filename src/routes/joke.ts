@@ -8,12 +8,15 @@ import { jokeByTypeController } from '../controllers/joke/JokeByType.controller'
 import { PNGByIdController } from '../controllers/joke/PNGById.controllert';
 import asyncMiddleware from '../middleware/async.middleware';
 import { jokeTypesController } from '../controllers/joke/JokeTypes.controller';
+import { AIJokeController } from '../controllers/joke/AIJoke.controller';
 
 const router: Router = Router();
 
 router.get('/count', asyncMiddleware(countJokeController));
 
 router.get('/search', asyncMiddleware(jokeBySearchController));
+
+router.get('/ai/:topic', asyncMiddleware(AIJokeController))
 
 router.get('/types', asyncMiddleware(jokeTypesController))
 
