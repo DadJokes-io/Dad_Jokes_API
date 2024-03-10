@@ -5,9 +5,8 @@ import { AiJokeService } from '../../services/joke/AIJoke.service';
 export const AIJokeController = async (req: Request, res: Response) => {
   try {
     const { topic } = req.params
-    const { style } = req.query
 
-    const jokeResponse = await AiJokeService(topic, String(style))
+    const jokeResponse = await AiJokeService(topic)
     res.send(jokeResponse);
   } catch (err) {
     console.log(err);
