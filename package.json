@@ -14,7 +14,6 @@
     "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
-    "canvas": "^2.11.2",
     "cors": "^2.8.5",
     "coveralls": "^3.1.0",
     "dotenv": "^8.2.0",
