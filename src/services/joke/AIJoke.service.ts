@@ -1,13 +1,13 @@
 import OpenAI from 'openai';
 import { openai } from '../..';
 
-export const AiJokeService = async (jokeTopic: string, jokeStyle: string) => {
+export const AiJokeService = async (jokeTopic: string) => {
   try {
     const params: OpenAI.Chat.ChatCompletionCreateParams = {
       messages: [
         { 
           role: 'user', 
-          content: `Generate a joke about ${jokeTopic} in a ${jokeStyle} style respond in JSON format separating the setup and punchline` 
+          content: `imagine you are an experienced comedian tasked with creating a joke with a given topic; ${jokeTopic}. In a JSON formatted response separating the setup and punchline`
         }
       ],
       max_tokens: 50,
