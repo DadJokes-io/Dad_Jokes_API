@@ -16,7 +16,7 @@ const retryConnection = () => {
     console.log('connected to db successfully')
   }).catch((e) => {
     console.error(e);
-    // retryConnection();
+    retryConnection();
   });
 };
 
