@@ -24,6 +24,6 @@ export const profileUserService = async (sessionToken: string | undefined) => {
     return { success: true, body: result };
   } catch (err) {
     console.log(err);
-    return { success: false, error: err.message };
+    return { success: false, error: (err as any).message || err };
   }
 };
