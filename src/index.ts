@@ -1,6 +1,6 @@
 require('dotenv').config();
 import mongodb from 'mongodb';
-// import OpenAI from 'openai';
+import OpenAI from 'openai';
 
 const port = process.env.PORT || 8080;
 const user = process.env.DB_USER;
@@ -20,10 +20,10 @@ const retryConnection = () => {
   });
 };
 
-// export const openai = new OpenAI({
-//   organization: "org-xnieWBbywbsTsuzg0NO5JhAN",
-//   apiKey: process.env.OPENAI_API_KEY,
-// });
+export const openai = new OpenAI({
+  organization: "org-xnieWBbywbsTsuzg0NO5JhAN",
+  apiKey: process.env.OPENAI_API_KEY,
+});
 
 retryConnection();
 
