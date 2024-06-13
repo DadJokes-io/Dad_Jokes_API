@@ -9,7 +9,7 @@ If you find yourself overwhelmed, we organized this documentation into four majo
 
 - [Getting started](#getting-started) introduces you to the operations offered by the API.
 - [API calls](#api-calls) gives you examples of those operations
-- [Field reference](#field-reference) Lists and describes the type of inforamtion provided by the API
+- [Field reference](#field-reference) Lists and describes the type of information provided by the API
 
 # Getting Started
 
